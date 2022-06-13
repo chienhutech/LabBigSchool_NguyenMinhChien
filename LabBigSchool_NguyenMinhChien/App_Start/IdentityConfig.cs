@@ -87,6 +87,11 @@ namespace LabBigSchool_NguyenMinhChien
             }
             return manager;
         }
+
+        internal Task CreateAsync(string email, string password, bool rememberMe, bool shouldLockout)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     // Configure the application sign-in manager which is used in this application.

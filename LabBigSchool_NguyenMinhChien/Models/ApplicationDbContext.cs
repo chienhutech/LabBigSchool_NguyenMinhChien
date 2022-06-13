@@ -7,7 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace Lab_BigSchool_NguyenMinhChien.Models
+namespace LabBigSchool_NguyenMinhChien.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

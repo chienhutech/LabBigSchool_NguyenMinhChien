@@ -1,61 +1,48 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using Lab_BigSchool_NguyenMinhChien.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using LabBigSchool_NguyenMinhChien.ViewModel;
 
-using LabBigSchool_NguyenMinhChien.Models;
-using Lab_BigSchool_NguyenMinhChien.Models;
-
-public class CoursesController : Controller
+namespace LabBigSchool_NguyenMinhChien.Controllers
 {
-    private readonly ApplicationDbContext _dbContext;
-    public CoursesController()
+    public class CoursesController : Controller
     {
-        _dbContext = new ApplicationDbContext();
-    }
-
-    public object Course { get; private set; }
-
-    [Authorize]
-    // GET: Courses
-    public ActionResult Create()
-    {
-        var viewModel = new CourseViewModel
+        private readonly ApplicationDbContext _dbContext;
+        public CoursesController()
         {
-            Categories = _dbContext.Categories.ToList()
-        };
-        return View(viewModel);
-    }
-    [Authorize]
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Create(CourseViewModel viewModel)
-    {
-        if (!ModelState.IsValid)
-        {
-            viewModel.Categories = _dbContext.Categories.ToList();
-            return View("Create", viewModel);
+            _dbContext = new ApplicationDbContext();
         }
+        [Authorize]
+        // GET: Courses
+        public ActionResult Create()
         {
-            if (ModelState.IsValid)
-
+            var viewModel = new CourseViewModel
             {
-                viewModel.Categories = _dbContext.Categories.ToList();
-                return View("Create", "viewModel");
-            }    
+                Categories = (System.Collections.Generic.IEnumerable<CourseViewModel>)_dbContext.Categories.ToList()
+            };
+            return View(viewModel);
         }
-        var course = new Course
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CourseViewModel viewModel)
         {
-            LecturerId = User.Identity.GetUserId(),
-            DateTime = viewModel.GetDateTime(),
-            CategoryId = viewModel.Category,
-            Place = viewModel.Place
-        };
-        Course course1 = _dbContext.Courses.Add(course);
-        _dbContext.SaveChanges();
-        return RedirectToAction("Index", "Home");
+            if (!ModelState.IsValid)
+            {
+                viewModel.Categories = (System.Collections.Generic.IEnumerable<CourseViewModel>)_dbContext.Categories.ToList();
+                return View("Create", viewModel);
+            }
+            var course = new Course
+            {
+                LecturerId = User.Identity.GetUserId(),
+                DateTime = viewModel.GetDateTime(),
+                CategoryId = viewModel.Category,
+                Place = viewModel.Place
+            };
+            _dbContext.Courses.Add(course);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

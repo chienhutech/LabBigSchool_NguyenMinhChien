@@ -23,8 +23,37 @@ textarea {
     max-width: 280px;
 }
 
-.navbar-inverse .navbar-toggle:hover,
-.navbar-inverse .navbar-toggle:focus {
-    background-color: #777;
-    border-color: #fff
+.course {
+    list-style: none;
+}
+
+
+    /*Course */
+
+    .course > li {
+        position: relative;
+        margin-bottom: 40px;
+    }
+
+        .course > li .date {
+            text-align: center;
+            background-color: #808080;
+            color: blue;
+            width: 80px;
+            border-radius: 8px;
+        }
+
+        .course > li .details {
+            position: absolute;
+            top: 0;
+            left: 80px;
+        }
+
+.navbar.navbar-inverse.navbar-fixed-top {
+    background: #4cff00;
+}
+
+.container.body-content {
+    display: grid;
+    background: red;
 }

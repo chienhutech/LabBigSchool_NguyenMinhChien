@@ -2,7 +2,7 @@
 
 namespace LabBigSchool_NguyenMinhChien.Models
 {
-    internal class requiredAttribute : Attribute
+    internal class ReducerAttribute : Attribute
     {
     }
 }
