@@ -1,10 +1,13 @@
-﻿using Lab_BigSchool_NguyenMinhChien.Models;
-using System.Linq;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
+﻿using LabBigSchool_NguyenMinhChien.Models;
 using LabBigSchool_NguyenMinhChien.ViewModel;
+using Microsoft.AspNet.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
-namespace LabBigSchool_NguyenMinhChien.Controllers
+namespace Big_School.Controllers
 {
     public class CoursesController : Controller
     {
@@ -13,16 +16,20 @@ namespace LabBigSchool_NguyenMinhChien.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
-        [Authorize]
+
+        public object Uses { get; private set; }
+
         // GET: Courses
+        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new CourseViewModel
             {
-                Categories = (System.Collections.Generic.IEnumerable<CourseViewModel>)_dbContext.Categories.ToList()
+                Categories = _dbContext.Categories.ToList()
             };
             return View(viewModel);
         }
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -30,7 +37,7 @@ namespace LabBigSchool_NguyenMinhChien.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Categories = (System.Collections.Generic.IEnumerable<CourseViewModel>)_dbContext.Categories.ToList();
+                viewModel.Categories = _dbContext.Categories.ToList();
                 return View("Create", viewModel);
             }
             var course = new Course
@@ -42,7 +49,9 @@ namespace LabBigSchool_NguyenMinhChien.Controllers
             };
             _dbContext.Courses.Add(course);
             _dbContext.SaveChanges();
+
             return RedirectToAction("Index", "Home");
         }
     }
 }
+

@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using LabBigSchool_NguyenMinhChien.Models;
+using Big_School.Controllers;
 
 namespace LabBigSchool_NguyenMinhChien.Controllers
 {

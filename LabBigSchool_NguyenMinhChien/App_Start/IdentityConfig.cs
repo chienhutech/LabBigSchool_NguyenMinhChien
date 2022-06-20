@@ -11,7 +11,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using LabBigSchool_NguyenMinhChien.Models;
-using Lab_BigSchool_NguyenMinhChien.Models;
 
 namespace LabBigSchool_NguyenMinhChien
 {

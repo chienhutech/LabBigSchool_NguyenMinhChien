@@ -1,4 +1,4 @@
-﻿using Lab_BigSchool_NguyenMinhChien.Models;
+﻿using LabBigSchool_NguyenMinhChien.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +18,9 @@ namespace LabBigSchool_NguyenMinhChien.Controllers
         public ActionResult Index()
         {
             var upcommingCourses = _dbContext.Courses
-                .Include(c => c.Lecturer)
-                .Include(c => c.Category)
-                .Where(c => c.DateTime > DateTime.Now);
+                 .Include(c => c.Lecturer)
+                 .Include(c => c.Category)
+                 .Where(c => c.DateTime > DateTime.Now);
             return View(upcommingCourses);
         }
 

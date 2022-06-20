@@ -10,14 +10,15 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using LabBigSchool_NguyenMinhChien.Models;
 
-namespace LabBigSchool_NguyenMinhChien.Controllers
+using LabBigSchool_NguyenMinhChien;
+
+namespace Big_School.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private string returnUrl;
 
         public AccountController()
         {
@@ -67,11 +68,10 @@ namespace LabBigSchool_NguyenMinhChien.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(RegisterViewModel model)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
-
                 return View(model);
             }
 
@@ -153,7 +153,7 @@ namespace LabBigSchool_NguyenMinhChien.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -6,7 +6,6 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using LabBigSchool_NguyenMinhChien.Models;
-using Lab_BigSchool_NguyenMinhChien.Models;
 
 namespace LabBigSchool_NguyenMinhChien
 {
